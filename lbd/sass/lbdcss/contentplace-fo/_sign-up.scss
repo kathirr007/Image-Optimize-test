@@ -1,0 +1,141 @@
+#signUpModal {
+  @extend %modal;
+
+  @media (max-width: 767px) {
+    .modal-container {
+      height: 100% !important;
+    }
+  }
+
+  .sign-up-form {
+    hr {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .input-texts {
+      margin-bottom: 10px;
+
+      span.add-on {
+        outline: 0;
+      }
+    }
+
+    button.sign-up {
+      margin-bottom: 15px;
+    }
+
+    .captcha-container {
+      margin-bottom: 15px;
+    }
+
+    .checkbox {
+      label {
+        text-transform: none;
+        font-weight: 400;
+        padding-left: 0;
+      }
+    }
+
+    .second-title {
+      font-size: 18px;
+      color: #353F53;
+      font-weight: 700;
+      text-align: left;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #f6f6f7;
+    }
+
+    .social-connect {
+      margin-bottom: 15px;
+
+      .row {
+        margin: 0 -7px;
+      }
+
+      .social-buttons {
+        padding: 0 7px;
+
+        a {
+          margin-bottom: 15px;
+        }
+      }
+
+      a {
+        margin-bottom: 8px;
+      }
+    }
+
+    .terms-conditions {
+      p {
+        margin-bottom: 0;
+        font-size: 12px;
+        text-align: center;
+
+        a {
+          color: #448aff;
+          text-decoration: underline;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+#signUpConfirmationModal {
+  @extend %modal;
+
+  .confirmation-email-content {
+    height: calc(100vh - 140px);
+    position: relative;
+  }
+
+  .send-mail-confirm {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    height: 56vh;
+  }
+
+  .fixed-actions {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+    .forget-password-actions {
+      button.btn-confirm {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.send-mail-confirm {
+  .confirmation-tick {
+    margin: 0 auto;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #448AFF;
+    position: relative;
+
+    /*     -webkit-box-shadow: 0px 30px 55px 0 rgba(68, 138, 255, 0.4);
+    -moz-box-shadow: 0px 30px 55px 0 rgba(68, 138, 255, 0.4);
+    box-shadow: 0px 30px 55px 0 rgba(68, 138, 255, 0.4); */
+
+    i {
+      position: absolute;
+      left: 25%;
+      top: 25%;
+      color: #fff;
+      font-size: 60px;
+    }
+  }
+}

@@ -1,0 +1,264 @@
+#signInModal {
+  padding: 0 !important;
+}
+
+#signInModal, #forgotPasswordModal, #ConfirmationSendingEmailModal {
+  @extend %modal;
+
+  .modal-dialogue {
+    width: 377px;
+  }
+
+  @media (max-width: 767px) {
+    .modal-container {
+      height: 100% !important;
+    }
+  }
+
+  .sign-in-form {
+    .alert-notification {
+      border-radius: 4px;
+      background: #f7f9fa;
+      color: #353F53;
+      padding: 15px;
+      margin-bottom: 20px;
+
+      &.validated {
+        background: #69A1FF;
+        color: #fff;
+      }
+    }
+
+    .remembered-user-container {
+      background: #f7f9fa;
+      border-radius: 4px;
+      height: 180px;
+      width: 100%;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+
+      .remembered-user {
+        width: 100%;
+        text-align: center;
+
+        .user-initial {
+          display: block;
+          width: 74px;
+          height: 74px;
+          margin: 0 auto 10px;
+        }
+
+        img {
+          display: block;
+          width: 74px;
+          height: 74px;
+          object-fit: cover;
+        }
+
+        .card-user-empty {
+          width: 74px;
+          height: 74px;
+          position: static;
+        }
+
+        .remembered-username {
+          font-size: 16px;
+          color: #3c4659;
+          font-weight: 700;
+          margin-bottom: 13px;
+
+          span.username {
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1;
+          }
+        }
+
+        .not-user {
+          width: 100%;
+          text-align: center;
+
+          a {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .input-texts {
+      margin-bottom: 10px;
+
+      span.add-on {
+        outline: 0;
+      }
+    }
+
+    .checkbox {
+      label {
+        text-transform: none;
+        font-weight: 400;
+        padding-left: 0;
+      }
+    }
+
+    .second-title {
+      font-size: 18px;
+      color: #353F53;
+      font-weight: 700;
+      text-align: left;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #f6f6f7;
+    }
+
+    .forgotten-password {
+      padding: 20px 0;
+      text-align: center;
+
+      a {
+        color: $helper;
+        text-decoration: underline;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    .captcha-container {
+      margin-top: 10px;
+    }
+
+    .social-connect {
+      margin-bottom: 15px;
+
+      a {
+        margin-bottom: 8px;
+      }
+    }
+
+    .crerate-account-link {
+      text-align: center;
+
+      a {
+        color: $helper;
+        text-decoration: underline;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .forgot-password-content, .confirmation-email-content {
+    height: calc(100vh - 170px);
+    position: relative;
+
+    .input-texts {
+      margin-bottom: 10px;
+    }
+
+    .fixed-actions {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+
+      button:first-child {
+        margin-bottom: 7px;
+      }
+    }
+
+    p {
+      color: #353F53;
+    }
+
+    .send-mail-confirm {
+      .confirmation-tick {
+        @extend %confirmation-tick;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .modal-content {
+      height: auto;
+      min-height: auto;
+      border-radius: 0;
+    }
+  }
+
+  .forgot-password-content {
+    height: calc(100vh - 360px);
+  }
+}
+
+#logoutModal {
+  .modal-dialog {
+    width: 400px;
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+  }
+
+  @extend %modal;
+
+  .modal-container {
+    height: 100% !important;
+
+    .user-details {
+      .client-image {
+        .client-image-container {
+          width: 50px;
+          height: 50px;
+
+          img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+          }
+
+          .card-user-empty {
+            height: 50px;
+          }
+        }
+      }
+
+      .list-head-container {
+        .user-name {
+          label {
+            font-size: 24px;
+            font-weight: 600;
+            color: #353F53;
+            text-transform: none;
+          }
+
+          .user-jobs {
+            span.helper-text {
+              font-size: 12px;
+              text-transform: none !important;
+              color: #B0B4BB;
+              font-weight: 400;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .modal-content {
+      height: auto;
+      min-height: auto;
+      border-radius: 0;
+    }
+  }
+}

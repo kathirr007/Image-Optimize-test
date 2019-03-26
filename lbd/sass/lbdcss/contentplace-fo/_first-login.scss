@@ -1,0 +1,424 @@
+#firstLoginModal {
+    @extend %modal;
+
+    .input-texts {
+        margin-bottom: 10px;
+    }
+
+    .first-login-content {
+        .tab-links {
+            ul.nav {
+                display: none;
+            }
+
+            .tab-content {
+                .tab-pane {
+                    padding: 0;
+
+                    .tab-panel-content-scroll {
+                        height: calc(100vh - 230px);
+                        overflow-y: auto;
+                        padding-right: 15px;
+                        padding-bottom: 40px;
+                    }
+
+                    .welcome-login {
+                        .tagline {
+                            font-size: 18px;
+                            color: #353F53;
+                            font-weight: 700;
+                        }
+
+                        p {
+                            margin-bottom: 70px;
+                        }
+                    }
+
+                    .tagline {
+                        font-size: 18px;
+                        color: #353F53;
+                        font-weight: 700;
+                    }
+
+                    p {}
+
+                    .language-delete {
+                        padding: 0 10px;
+
+                        a {
+                            position: relative;
+                            top: 7px;
+                        }
+                    }
+
+                    .add-languages {
+                        margin-bottom: 20px;
+
+                        a {
+                            color: #448aff;
+                            text-decoration: underline;
+
+                            &:after {
+                                text-decoration: none;
+                            }
+                        }
+                    }
+
+                    .self-employed {
+                        padding: 0 15px;
+
+                        label {
+                            padding-left: 0;
+                            text-transform: none;
+                        }
+                    }
+
+                    .interest-list-container {
+                        margin-bottom: 30px;
+
+                        .interest-list {
+                            padding-right: 0;
+
+                            ul {
+                                padding: 0;
+                                margin: 0;
+                                list-style-type: none;
+
+                                li {
+                                    float: left;
+                                    padding: 7px 40px 7px 10px;
+                                    margin-right: 15px;
+                                    margin-bottom: 10px;
+                                    min-width: 164px;
+                                    border: 1px solid #dfe2e5;
+                                    border-radius: 20px;
+                                    background: #f3f5f7;
+                                    color: #384256;
+                                    position: relative;
+
+                                    i {
+                                        color: #9a9fa9;
+                                    }
+
+                                    a {
+                                        position: absolute;
+                                        right: 7px;
+                                        top: 5px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .connect-linkedin {
+                        margin: 20px 0 10px;
+
+                        a {
+                            text-align: center;
+                        }
+                    }
+
+                    .profile-picture-container {
+                        display: -webkit-box;
+                        display: -moz-box;
+                        display: -ms-flexbox;
+                        display: -webkit-flex;
+                        display: flex;
+                        height: calc(100vh - 305px);
+                        align-items: center;
+                        justify-content: center;
+
+                        .profile-picture-block {
+                            position: relative;
+
+                            a.no-image {
+                                width: 170px;
+                                height: 170px;
+                                border: 2px dashed #9a9fa9;
+                                border-radius: 50%;
+                                display: -webkit-box;
+                                display: -moz-box;
+                                display: -ms-flexbox;
+                                display: -webkit-flex;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                text-align: center;
+
+                                span {
+                                    display: block;
+                                    font-weight: 700;
+                                }
+
+                                &.disable {
+                                    pointer-events: none;
+
+                                    .profile-image-loader {
+                                        position: absolute;
+
+                                        @-webkit-keyframes dyinglight {
+                                            15% {
+                                                -webkit-transform: scale(1.6);
+                                                transform: scale(1.6);
+                                            }
+
+                                            50% {
+                                                -webkit-transform: rotate(-89deg);
+                                                transform: rotate(-89deg);
+                                            }
+
+                                            100% {
+                                                -webkit-transform: rotate(-90deg);
+                                                transform: rotate(-90deg);
+                                            }
+                                        }
+
+                                        @keyframes dyinglight {
+                                            15% {
+                                                -webkit-transform: scale(1.6);
+                                                transform: scale(1.6);
+                                            }
+
+                                            50% {
+                                                -webkit-transform: rotate(-89deg);
+                                                transform: rotate(-89deg);
+                                            }
+
+                                            100% {
+                                                -webkit-transform: rotate(-90deg);
+                                                transform: rotate(-90deg);
+                                            }
+                                        }
+
+                                        .pImage-loader {
+                                            position: absolute;
+                                            left: 50%;
+                                            top: 50%;
+                                            -webkit-transform: translate(-50%, -50%);
+                                            transform: translate(-50%, -50%);
+                                            display: inline-block;
+                                        }
+
+                                        .pImage-loader-square {
+                                            display: block;
+                                            width: 50px;
+                                            height: 50px;
+                                            background: #4285F4;
+                                        }
+
+                                        .pImage-loader-container {
+                                            position: absolute;
+                                            left: 0;
+                                            top: 0;
+                                            bottom: 0;
+                                            right: 0;
+                                            -webkit-transform-origin: 50% 50% 0;
+                                            transform-origin: 50% 50% 0;
+                                            -webkit-animation: dyinglight 1s ease infinite;
+                                            animation: dyinglight 1s ease infinite;
+                                            -webkit-backface-visibility: hidden;
+                                            backface-visibility: hidden;
+                                        }
+
+                                        .pImage-loader-corner--top:before,
+                                        .pImage-loader-corner--top:after,
+                                        .pImage-loader-corner--bottom:before,
+                                        .pImage-loader-corner--bottom:after {
+                                            position: absolute;
+                                            width: 17px;
+                                            height: 17px;
+                                            color: #4285F4;
+                                            content: "";
+                                        }
+
+                                        .pImage-loader-corner--top:before {
+                                            border-left: 1px solid;
+                                            border-top: 1px solid;
+                                            top: -6px;
+                                            left: -6px;
+                                        }
+
+                                        .pImage-loader-corner--top:after {
+                                            border-right: 1px solid;
+                                            border-top: 1px solid;
+                                            top: -6px;
+                                            right: -6px;
+                                        }
+
+                                        .pImage-loader-corner--bottom:before {
+                                            border-left: 1px solid;
+                                            border-bottom: 1px solid;
+                                            bottom: -6px;
+                                            left: -6px;
+                                        }
+
+                                        .pImage-loader-corner--bottom:after {
+                                            border-right: 1px solid;
+                                            border-bottom: 1px solid;
+                                            bottom: -6px;
+                                            right: -6px;
+                                        }
+                                    }
+                                }
+                            }
+
+                            img {
+                                width: 170px;
+                                height: 170px;
+                                object-fit: cover;
+                            }
+
+                            a.edit-profile-picture {
+                                position: absolute;
+                                right: 0;
+                                bottom: 0;
+                                width: 50px;
+                                height: 50px;
+                                border-radius: 50%;
+                                border: 2px solid #fff;
+                                background: #353f53;
+
+                                i {
+                                    color: #fff;
+                                    position: absolute;
+                                    top: 11px;
+                                    left: 12px;
+                                }
+                            }
+
+                            ul.dropdown-menu {
+                                position: absolute;
+                                right: -60px;
+                                left: auto;
+                                top: auto;
+                                bottom: -130px;
+
+                                &:before, &:after {
+                                    left: 65px;
+                                }
+
+                                li {
+                                    a {
+                                        background: #fff;
+
+                                        &:hover {
+                                            color: #fff;
+                                            background: #448aff;
+                                        }
+                                    }
+
+                                    &.remove {
+                                        a {
+                                            color: #f34a89;
+
+                                            &:hover {
+                                                color: #fff;
+                                                background: #448aff;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .clients-selection-list {
+                        .clients-selection-head {
+                            border-bottom: 1px solid #edeeef;
+                            padding-bottom: 10px;
+
+                            .header {
+                                color: #9a9fa9;
+                                font-weight: 700;
+                                text-transform: uppercase;
+
+                                &:last-child {
+                                    text-align: right;
+                                }
+                            }
+                        }
+
+                        .clients-selection-row {
+                            border-bottom: 1px solid #edeeef;
+                            padding-top: 20px;
+                            padding-bottom: 20px;
+
+                            .client-logo {
+                                width: 68px;
+                                border-radius: 50%;
+                                object-fit: cover;
+
+                                img {
+                                    width: 38px;
+                                    height: 38px;
+                                }
+                            }
+
+                            .client-name {
+                                padding-left: 5px;
+                                display: -webkit-box;
+                                display: -moz-box;
+                                display: -ms-flexbox;
+                                display: -webkit-flex;
+                                display: flex;
+                                align-items: center;
+                                height: 38px;
+                                color: #353f53;
+                                font-weight: 700;
+                            }
+
+                            .client-select {
+                                float: right;
+                                display: -webkit-box;
+                                display: -moz-box;
+                                display: -ms-flexbox;
+                                display: -webkit-flex;
+                                display: flex;
+                                align-items: center;
+                                height: 38px;
+                            }
+                        }
+
+                        .show-more-clients {
+                            margin: 20px 0 10px;
+
+                            a {
+                                color: #353f53;
+                                text-decoration: underline;
+
+                                &:hover {
+                                    text-decoration: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Resize Image Modal Starts */
+#resizeImageModal {
+    @extend %modal;
+
+    .modal-container {
+        height: calc(100vh - 150px);
+        overflow-y: auto;
+        padding-right: 15px;
+
+        .upload-picture-container {
+            input[type="file"] {
+                display: none;
+            }
+
+            .btn-upload {
+                width: 50% !important;
+                margin: 0 auto;
+                display: block;
+            }
+        }
+    }
+}
+
+/* Resize Image Modal Ends */

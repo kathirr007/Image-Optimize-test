@@ -1,0 +1,23 @@
+// Layout-6 Changes Starts
+
+.layout-6.wp-app, .layout-6.cp-fo {
+  .page-wrap {
+    .main-panel-wrap {
+      .main-panel {
+        .main-panel-page {
+          .main-container {
+            margin: 25px auto 0 !important;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            flex-flow: row wrap;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Layout-6 Changes Ends */

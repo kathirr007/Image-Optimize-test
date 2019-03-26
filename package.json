@@ -1,0 +1,22 @@
+{
+  "name": "image-optimize",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.26.3",
+    "compress-images": "^1.4.6",
+    "del": "^4.0.0",
+    "gulp": "^4.0.0",
+    "gulp-filter": "^5.1.0",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-newer": "^1.4.0",
+    "gulp-size": "^3.0.0",
+    "gulp-smushit": "^1.2.0"
+  }
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="38px" viewBox="0 0 27 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="HP---Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop---Not-logged" transform="translate(-1242.000000, -1530.000000)" fill="#00BCDC">
+            <g id="Key-points" transform="translate(81.000000, 1364.000000)">
+                <g id="Card-4" transform="translate(1019.000000, 130.000000)">
+                    <g id="Icon" transform="translate(142.000000, 36.000000)">
+                        <path d="M17,28 C17,29.656 15.656,31 14,31 C12.344,31 11,29.656 11,28 C11,26.344 12.344,25 14,25 C15.656,25 17,26.344 17,28" id="Fill-212"></path>
+                        <path d="M3.85714286,34.2 L3.85714286,20.9 L23.1428571,20.9 L23.1447857,34.2 L3.85714286,34.2 Z M7.71428571,9.5 C7.71428571,6.3574 10.3101429,3.8 13.5,3.8 C16.6898571,3.8 19.2857143,6.3574 19.2857143,9.5 L19.2857143,17.1 L7.71428571,17.1 L7.71428571,9.5 Z M23.1428571,17.1 L23.1428571,9.5 C23.1428571,4.2617 18.8170714,0 13.5,0 C8.18292857,0 3.85714286,4.2617 3.85714286,9.5 L3.85714286,17.1 C1.72992857,17.1 0,18.8024 0,20.9 L0,34.2 C0,36.2957 1.72992857,38 3.85714286,38 L23.1428571,38 C25.2700714,38 27,36.2957 27,34.2 L27,20.9 C27,18.8024 25.2700714,17.1 23.1428571,17.1 L23.1428571,17.1 Z" id="Fill-213"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
