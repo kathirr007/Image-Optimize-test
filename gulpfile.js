@@ -4,13 +4,19 @@
   gulp = require('gulp'),
   chokidar = require('chokidar'),
   del = require('del'),
+  imagemin = require('imagemin'),
+  imageminPngquant = require('imagemin-pngquant'),
   pkg = require('./package.json'),
   $ = require('gulp-load-plugins')({ lazy: true }),
   browserSync = require('browser-sync').create(),
   reload = browserSync.reload;
   var compress_images = require('compress-images');
- 
-    
+
+//   export ABRAIA_KEY='NWE2ZTkxYjAzYzAwMDAwMDpPTHNUTEFoZzNtUkYwYWtzRXRwUDJXaFpHYmZjd3lxSQ==';
+
+  process.env['ABRAIA_KEY'] = 'NWE2ZTkxYjAzYzAwMDAwMDpPTHNUTEFoZzNtUkYwYWtzRXRwUDJXaFpHYmZjd3lxSQ==';
+
+
 
 // file locations
 var
@@ -39,81 +45,11 @@ var
     out: dest + 'lbd/img/'
   },
 
-  css = {
-    in: [source + 'lbd/sass/fo-style.scss'],
-    watch: ['lbd/sass/**/*.scss'],
-    out: dest + 'lbd/css/',
-    pluginCSS: {
-      in: [source + 'lbd/css/**/*', './node_modules/bootstrap-sass/assets/stylesheets/*_bootstrap.scss'],
-      liveIn: [source + 'lbd/css/bootstrap.css', source + 'lbd/css/font-awesome.min.css',
-                source + 'lbd/css/jquery.ui.theme.min.css', source + 'lbd/css/jquery.mCustomScrollbar.min.css',
-                source + 'lbd/css/material-icons.css', source + 'lbd/css/jquery-ui-1.8.20.custom.css', source + 'lbd/css/cookieconsent.css' , source + 'lbd/css/*images/**/*'],
-      watch: ['lbd/css/**/*.css'],
-      out: dest + 'lbd/css/'
-    },
-    sassOpts: {
-      outputStyle: devBuild ? 'compressed' : 'compressed',
-      imagePath: '../img',
-      precision: 3,
-      errLogToConsole: true
-    }
-  },
-
   fonts = {
     in: source + 'lbd/fonts/*.*',
     out: dest + 'lbd/fonts/'
   },
 
-  js = {
-    in: source + 'lbd/js/**/*',
-    liveIn: [source + 'lbd/js/jquery.min.js',
-          // source + 'lbd/js/jquery-1.12.4.min.js',
-          // source + 'lbd/js/jquery-ui.min.js',
-          source + 'lbd/js/jquery-ui-1.10.0.custom.min.js',
-          source + 'lbd/js/jquery-ui-slider.min.js',
-          source + 'lbd/js/jquery.validate.min.js',
-          source + 'lbd/js/underscore-min.js',
-          source + 'lbd/js/moment.min.js',
-          source + 'lbd/js/bootstrap.min.js',
-          source + 'lbd/js/bootstrap-datetimepicker.js',
-          source + 'lbd/js/bootstrap-selectpicker.js',
-          source + 'lbd/js/bootstrap-checkbox-radio-switch-tags.js',
-          source + 'lbd/js/chartist.min.js',
-          source + 'lbd/js/bootstrap-notify.js',
-          source + 'lbd/js/jquery.bootstrap.wizard.min.js',
-          source + 'lbd/js/bootstrap-table.js',
-          source + 'lbd/js/fullcalendar.min.js',
-          source + 'lbd/js/light-bootstrap-dashboard.js',
-          source + 'lbd/js/jquery.mCustomScrollbar.concat.min.js',
-          source + 'lbd/js/jquery-ns-autogrow.min.js',
-          source + 'lbd/js/countdown.js',
-          source + 'lbd/js/ggdrive.js',
-          source + 'lbd/js/jquery.MultiFileQuote.js',
-          source + 'lbd/js/bootstrap-show-password.min.js',
-          source + 'lbd/js/push.min.js',
-          source + 'lbd/js/cookieconsent.min.js',
-          source + 'lbd/js/custom.js'],
-    out: dest + 'lbd/js/'
-    // filename: 'main.js'
-  },
-
-  jsLibs = {
-    in: source + 'lbd/lib/**/*',
-    out: dest + 'lbd/lib/'
-    // filename: 'main.js'
-  },
-
-  bootstrapFilter = $.filter(['**/bootstrap-custom.scss'], {restore: true}),
-  cssFilter = $.filter(['**/*.css'], {restore: true}),
-  htmlFilter = $.filter(['**/*.html', '**/*.md'], {restore: true}),
-  imageFilter = $.filter(['**/*.+(jpg|png|gif|svg)'], {restore: true}),
-  imageFilter2 = $.filter(['**/*.+(jpg|png|tiff|webp)'], {restore: true}),
-  jsFilter = $.filter(['**/*.js'], {restore: true}),
-  jsFilter2 = $.filter(['**/*.js', '!**/*custom.js'], {restore: true}),
-  jsFilter3 = $.filter(['**/*.js', '!lbd/lib/sweetalert2/src/**/*'], {restore: true}),
-  jsonFilter = $.filter(['**/*.json'], {restore: true}),
-  // filesFilters = {
-  // },
 
   syncOpts = {
     server: {
@@ -138,10 +74,11 @@ gulp.task('clean', function(done) {
   done();
 });
 
-gulp.task('clean-images', function() {
+gulp.task('clean-images', function(done) {
   del([
     dest + 'lbd/img/**/*'
   ]);
+  done();
 });
 
 gulp.task('clean-html', function() {
@@ -197,70 +134,67 @@ gulp.task('html', function() {
 // manage images
 gulp.task('images', () => {
   // var imageFilter = $.filter(['**/*.jpg', '**/*.png'], {restore: true});
-  var imageFilter = $.filter(['**/*.{jpg,png,gif,bmp,tif}', '!**/*.svg'], {restore: true});
-  gulp.src(images.in)
+  var imageFilter = $.filter(['**/*.{jpg,png,gif,bmp,tif,svg}', '!**/*.{ico}'], {restore: true});
+  return gulp.src(images.in)
     .pipe($.size({title: 'Total images in '}))
-    .pipe(imageFilter)
-    .pipe($.size({title: 'Filtered images in '}))
+    /* .pipe(imageFilter)
+    .pipe($.size({title: 'Filtered images in '})) */
     .pipe($.newer(images.out))
-    .pipe($.smushit())
-    .pipe($.size({title: 'Filtered images out '}))
+    .pipe($.image({
+        jpegRecompress: ['--strip', '--quality', 'medium', '--min', 40, '--max', 80, '--loops', 10],
+        // mozjpeg: ['-optimize', '-progressive'],
+        // guetzli: ['--quality', 85],
+        quiet: true
+    }))
+    /*.pipe($.size({title: 'Filtered images out '}))
     .pipe(imageFilter.restore)
-    /*.pipe(imageFilter2)
+    .pipe(imageFilter2)
     .pipe($.webp())
     .pipe(imageFilter2.restore)*/
     .pipe($.size({title: 'Total images out '}))
     .pipe(gulp.dest(images.out));
 });
 
-//gulp compress_images
-gulp.task('compress_images', function() {
-   
-  //[jpg+gif+png+svg] ---to---> [jpg(webp)+gif(gifsicle)+png(webp)+svg(svgo)]
-  compress_images('./lbd/img/**/*.{jpg,JPG,jpeg,JPEG,gif,png,svg}', 'build/img/', {compress_force: false, statistic: true, autoupdate: true}, false,
-                                              {jpg: {engine: 'webp', command: false}},
-                                              {png: {engine: 'webp', command: false}},
-                                              {svg: {engine: 'svgo', command: false}},
-                                              {gif: {engine: 'gifsicle', command: ['--colors', '64', '--use-col=web']}}, function(){
-        //-------------------------------------------------                                    
-        //[jpg] ---to---> [jpg(jpegtran)] WARNING!!! autoupdate  - recommended to turn this off, it's not needed here - autoupdate: false
-        compress_images('./lbd/img/**/*.{jpg,JPG,jpeg,JPEG}', './lbd/img/combine/', {compress_force: false, statistic: true, autoupdate: false}, false,
-                                                        {jpg: {engine: 'jpegtran', command: ['-trim', '-progressive', '-copy', 'none', '-optimize']}},
-                                                        {png: {engine: false, command: false}},
-                                                        {svg: {engine: false, command: false}},
-                                                        {gif: {engine: false, command: false}}, function(){
-              //[jpg(jpegtran)] ---to---> [jpg(mozjpeg)] WARNING!!! autoupdate  - recommended to turn this off, it's not needed here - autoupdate: false
-              compress_images('./lbd/img/combine/**/*.{jpg,JPG,jpeg,JPEG}', 'build/img/', {compress_force: false, statistic: true, autoupdate: false}, false,
-                                                              {jpg: {engine: 'mozjpeg', command: ['-quality', '75']}},
-                                                              {png: {engine: false, command: false}},
-                                                              {svg: {engine: false, command: false}},
-                                                              {gif: {engine: false, command: false}}, function(){
-                    //[png] ---to---> [png(pngquant)] WARNING!!! autoupdate  - recommended to turn this off, it's not needed here - autoupdate: false
-                    compress_images('./lbd/img/**/*.png', 'build/img/', {compress_force: false, statistic: true, autoupdate: false}, false,
-                                                                    {jpg: {engine: false, command: false}},
-                                                                    {png: {engine: 'pngquant', command: ['--quality=30-60']}},
-                                                                    {svg: {engine: false, command: false}},
-                                                                    {gif: {engine: false, command: false}}, function(){                                                      
-                    }); 
-              });                                      
-        });
-        //-------------------------------------------------
+gulp.task('gulp-image', () => {
+    gulp.src(images.in)
+        // .pipe($.newer('./builds/development/img/compressed/gulp-image'))
+        .pipe($.image({
+            jpegRecompress: ['--strip', '--quality', 'medium', '--min', 40, '--max', 80, '--loops', 10],
+            // mozjpeg: ['-optimize', '-progressive'],
+            // guetzli: ['--quality', 85],
+            quiet: true
+        }))
+        .pipe(gulp.dest('./builds/development/img/compressed/gulp-image/jpegRecomp'));
   });
-});
+
+  gulp.task('optimize-images', () => {
+    return gulp.src(images.in)
+      .pipe($.cache($.abraia()))
+      .pipe(gulp.dest('builds/development/img/abaria'))
+  })
+
+  gulp.task('variants', () => {
+    return gulp.src(images.in)
+      .pipe($.cache($.abraia([
+        { width: 1920, rename: { suffix: '-1920' }},
+        { width: 750, rename: { suffix: '-750' }},
+        { width: 375, rename: { suffix: '-375' }}
+      ])))
+      .pipe(gulp.dest('builds/development/img/abaria'))
+  })
 
 // copy fonts
 gulp.task('fonts', function() {
   return gulp.src(fonts.in)
     .pipe($.newer(dest+ 'lbd/fonts/'))
+    .pipe($.image({
+        quiet: true
+    }))
+    .pipe($.fontmin())
     .pipe(gulp.dest(dest + 'lbd/fonts/'));
 });
 
 
-// copy plugin css
-
-// compile Sass
-
-// js tasks
 
 
 
