@@ -3,17 +3,20 @@
     top: 0;
     bottom: 0;
     left: 0;
-    width: 260px;
+    // width: 260px;
+    width: 80px; // Added from wp-old-styles
     display: block;
     z-index: 1;
     color: #fff;
+    background-color: #fff; // Added from wp-old-styles
     font-weight: 200;
 
 
     .sidebar-wrapper{
         position: relative;
         overflow-x: hidden;
-        overflow-y: scroll;
+        // overflow-y: scroll;
+        overflow-y: hidden; // Added from wp-old-styles
         margin-right: -17px;
         padding-right: 17px; //did the 17px trick for hidding the ugly scroll bar in windows
         z-index: 4;
@@ -21,7 +24,8 @@
         height: calc(100vh - 64px);
 
         > .nav{
-            margin-top: 20px;
+            // margin-top: 20px;
+            margin-top: 80px; // Added from wp-old-styles
         }
 
         > .user ~ .nav{
@@ -50,24 +54,41 @@
 
         li{
             > a{
-                color: #FFFFFF;
-                margin: 5px 15px;
-                opacity: .86;
+                // color: #FFFFFF;
+                color: #383d49; // Added from wp-old-styles
+                // margin: 5px 15px;
+                margin: 9px 0px; // Added from wp-old-styles
+                // opacity: .86;
+                opacity: .56; // Added from wp-old-styles
                 border-radius: $border-radius-base;
+                text-align: center; // Added from wp-old-styles
+                padding: 10px 0; // Added from wp-old-styles
+                span {
+                    margin: 0;
+                    font-size: 12px;
+                    display: block;
+                  }
             }
 
             &:hover > a{
-                background: rgba(255,255,255,0.13);
+                // background: rgba(255,255,255,0.13);
+                background-color: #448aff; // Added from wp-old-styles
                 opacity: 1;
                 color: #FFFFFF;
             }
 
-            &.active > a{
-                color: #FFFFFF;
-                opacity: 1;
-                background: rgba(255,255,255,0.23);
-
-            }
+            &.active{
+                > a{
+                    // color: #FFFFFF;
+                    color: #448aff; // Added from wp-old-styles
+                    font-weight: normal; // Added from wp-old-styles
+                    opacity: 1;
+                    background: rgba(255,255,255,0.23);
+                }
+                &:hover > a {
+                    color: #fff;
+                  }
+            } 
         }
 
         [data-toggle="collapse"] ~ div > ul > li > a{
@@ -148,7 +169,6 @@
                 width: 100%;
             }
         }
-
 
     }
 
@@ -235,6 +255,7 @@
     float: right;
     width: $sidebar-width;
     min-height: 100%;
+    overflow: auto;
 
     > .content{
         padding: 30px 15px;
@@ -246,11 +267,22 @@
     }
 
     > .footer{
-        border-top: 1px solid #e7e7e7;
+        border-top: 1px solid $light-gray;
     }
 
     .navbar{
         margin-bottom: 0;
+        .container-fluid {
+            position: relative;
+
+            .brand {
+              position: absolute;
+              z-index: 1000;
+              top: 10px;
+              left: 50%;
+              transform: translateX(-50%);
+            }
+          }
     }
 }
 
@@ -265,8 +297,4 @@
     -webkit-transition-timing-function: linear,linear;
     transition-timing-function: linear,linear;
     -webkit-overflow-scrolling: touch;
-}
-
-.main-panel{
-    overflow: auto;
 }

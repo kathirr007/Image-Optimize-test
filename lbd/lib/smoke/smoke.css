@@ -74,7 +74,8 @@
 
 .smoke-base {
   background: rgba(0,0,0,.3);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#90000000,endColorstr=#900000000);
+  filter: #{"progid:DXImageTransform.Microsoft.gradient(startColorstr=#90000000,endColorstr=#900000000)"};
+  /* filter: unquote("filter-function(progid:DXImageTransform.Microsoft.gradient(startColorstr=#90000000,endColorstr=#900000000))"); */
 }
 
 .smoke-base .dialog {

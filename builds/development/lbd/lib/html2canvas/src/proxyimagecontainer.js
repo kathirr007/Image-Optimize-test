@@ -1,0 +1,1 @@
+function ProxyImageContainer(r,i){document.createElement("script");var e=document.createElement("a");e.href=r,r=e.href,this.src=r,this.image=new Image;var o=this;this.promise=new Promise(function(e,n){o.image.crossOrigin="Anonymous",o.image.onload=e,o.image.onerror=n,new ProxyURL(r,i,document).then(function(e){o.image.src=e}).catch(n)})}

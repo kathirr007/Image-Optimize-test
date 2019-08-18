@@ -1,7 +1,7 @@
 (function($) {
 
     $.fn.percentageLoader = function(options) {
-		
+
         this.each(function() {
             var $this = $(this);
             //Configuration Item
@@ -74,14 +74,14 @@
                     fill: config.textColor
                 });
 			 }
-			 
+
 			 if(config.valstyl ==1){
                 txt = paper.text(rx, ry, config.cpercent + "/" +config.totlvolume).attr({
                     font: config.fontWeight + " " + config.fontSize + " Arial",
                     fill: config.textColor
                 });
 			 }
-			 
+
             };
             minit();
             // //Chromatogram
@@ -92,7 +92,7 @@
             //  }
             //  console.log(arr);
             //  return arr[parseInt(size * 2.55)];
-            // }; 
+            // };
             //Ring and move up event bindings
             function updateVal(value, total, R, hand, id) {
                 if (init) {
@@ -129,7 +129,7 @@
         strokeWidth: 8,
         bgColor: '#d9d9d9',
         ringColor: '#d53f3f',
-        textColor: '#9a9a9a',
+        textColor: '#999999',
         fontSize: '12px',
         fontWeight: 'normal'
     };

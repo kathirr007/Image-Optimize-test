@@ -45,7 +45,7 @@
 
 (function($) {
 
-	$.fn.tagedit = function(options) {	
+	$.fn.tagedit = function(options) {
 		/**
 		* Merge Options with defaults
 		*/
@@ -89,7 +89,7 @@
 		if(options.autocompleteURL) {
 			options.autocompleteOptions.source = options.autocompleteURL;
 		}
-		
+
 		// Set the direction of the inputs
 		var direction= this.attr('dir');
 		if(direction && direction.length > 0) {
@@ -164,7 +164,7 @@
 
 						// Event is triggert in case of choosing an item from the autocomplete, or finish the input
 						$(this).bind('transformToTag', function(event, id) {
-							
+
 							var oldValue = (typeof id != 'undefined' && (id.length > 0 || id > 0));
 
 							var checkAutocomplete = oldValue == true? false : true;
@@ -176,9 +176,9 @@
 									oldValue = true;
 									id = isNewResult[1];
 								}
-								
+
 								if(options.allowAdd == true || oldValue) {
-									
+
 									// Make a new tag in front the input
 									html = '<li class="tagedit-listelement tagedit-listelement-old">';
 									html += '<span dir="'+options.direction+'">' + $(this).val() + '</span>';
@@ -453,7 +453,7 @@
 		function isNew(value, checkAutocomplete) {
             checkAutocomplete = typeof checkAutocomplete == 'undefined'? false : checkAutocomplete;
 			var autoCompleteId = null;
-            
+
             var compareValue = options.checkNewEntriesCaseSensitive == true? value : value.toLowerCase();
 
 			var isNew = true;
@@ -480,7 +480,7 @@
 					} else {
 						autocompleteURL += '?';
 					}
-					
+
 					autocompleteURL += 'term=' + value;
 					$.ajax({
 						async: false,
@@ -491,7 +491,7 @@
 						}
 					});
 				}
-                
+
 				// If there is an entry for that already in the autocomplete, don't use it (Check could be case sensitive or not)
 				for (var i = 0; i < result.length; i++) {
                     var resultValue = result[i].label? result[i].label : result[i];

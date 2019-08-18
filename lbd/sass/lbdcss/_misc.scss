@@ -1,7 +1,7 @@
 /*     General overwrite     */
 body,
 .wrapper{
-    min-height: 100vh;
+    // min-height: 100vh;
     position: relative;
 }
 
@@ -59,11 +59,11 @@ input:focus {
     @include transition($fast-transition-time, $transition-ease-in);
 }
 
-.btn{
-    @include transition($ultra-fast-transition-time, $transition-ease-in);
-}
 .fa{
-    width: 18px;
+    // width: 18px;
+    // Added from wp-old-styles
+    width: 24px;
+    // Added from wp-old-styles ends
     text-align: center;
 }
 .margin-top{
@@ -78,7 +78,7 @@ a.dropdown-toggle[aria-expanded="true"] .caret{
 
 legend{
     font-size: $font-size-h4;
-    font-weight: $font-weight-light;
+    font-weight: $font-weight-normal;
 }
 
 .full-screen-map{

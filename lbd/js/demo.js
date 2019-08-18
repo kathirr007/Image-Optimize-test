@@ -419,7 +419,7 @@ demo = {
                 zoomOnScroll: false,
                 regionStyle: {
                     initial: {
-                        fill: '#e4e4e4',
+                        fill: '#e8e8e8',
                         "fill-opacity": 0.9,
                         stroke: 'none',
                         "stroke-width": 0,

@@ -1,0 +1,92 @@
+.bu-single-page {
+  .main-panel-page-header .contract .contract-spec .contract-name .primary-font {
+    margin-left: 0 !important;
+  }
+
+  .main-container {
+    .tab-panel-container {
+      .tab-panel {
+        .page-filter {
+          // padding-bottom: 500px;
+
+          .filter-list-container {
+            .filter-list {
+              ul {
+                li {}
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .main-panel-container {
+      .bu-list-header {
+        .search-list {
+          input[type='search'] {
+            background: #fff url('../img/search.svg') no-repeat;
+            background-size: 25px;
+            background-position: 5px;
+            padding-left: 35px;
+          }
+        }
+      }
+
+      .contract-content-container {
+        padding-top: 45px;
+
+        .card-section-list ul li .card-contract {
+          height: auto;
+        }
+
+        .bu-list {
+          .list-head {
+            color: #485262;
+            font-size: 14px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            span {
+              display: block;
+              color: #C5C8CE;
+              font-size: 14px;
+              font-weight: $font-weight-normal;
+            }
+          }
+
+          .edit {
+            a {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 100%;
+              color: $cta-icons;
+
+              &:hover {
+                color: $main;
+              }
+            }
+          }
+        }
+
+        .cta-container {
+          width: 33%;
+        }
+      }
+    }
+
+    .bu-profile-create-container, .bu-profile-edit-container {
+      .chosen-container-multi .chosen-choices {
+        padding: 5px 15px !important;
+        min-height: 38px;
+        height: auto;
+      }
+
+      .chosen-container-multi .chosen-choices li.search-choice {
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
