@@ -141,22 +141,12 @@
   };
 
   var changed_arguments = null;
-
-  var EventIsSupported = (function() {
-    try {
-      new Event('change');
-      return true;
-    } catch (e) {
-      return false;
-    }
-  })();
-
   $.fn.triggerNative = function (eventName) {
     var el = this[0],
         event;
 
     if (el.dispatchEvent) { // for modern browsers & IE9+
-      if (EventIsSupported) {
+      if (typeof Event === 'function') {
         // For modern browsers
         event = new Event(eventName, {
           bubbles: true
@@ -245,7 +235,7 @@
     "'": '&#x27;',
     '`': '&#x60;'
   };
-  
+
   var unescapeMap = {
     '&amp;': '&',
     '&lt;': '<',
@@ -314,7 +304,7 @@
     this.init();
   };
 
-  Selectpicker.VERSION = '1.12.4';
+  Selectpicker.VERSION = '1.12.2';
 
   // part of this is duplicated in i18n/defaults-en_US.js. Make sure to update both.
   Selectpicker.DEFAULTS = {
@@ -329,8 +319,8 @@
         (numGroup == 1) ? 'Group limit reached ({n} item max)' : 'Group limit reached ({n} items max)'
       ];
     },
-    selectAllText: 'Select All',
-    deselectAllText: 'Deselect All',
+    selectAllText: 'Select all',
+    deselectAllText: 'Deselect all',
     doneButton: false,
     doneButtonText: 'Close',
     multipleSeparator: ', ',
@@ -431,7 +421,9 @@
 
       if (that.$element[0].hasAttribute('required')) {
         this.$element.on('invalid', function () {
-          that.$button.addClass('bs-invalid');
+          that.$button
+            .addClass('bs-invalid')
+            .focus();
 
           that.$element.on({
             'focus.bs.select': function () {
@@ -448,11 +440,6 @@
               if (this.validity.valid) that.$button.removeClass('bs-invalid');
               that.$element.off('rendered.bs.select');
             }
-          });
-
-          that.$button.on('blur.bs.select', function() {
-            that.$element.focus().blur();
-            that.$button.off('blur.bs.select');
           });
         });
       }
@@ -696,7 +683,7 @@
             if (prevHiddenIndex !== undefined) {
               // select the element **before** the first hidden element in the group
               var prevHidden = $selectOptions.eq(prevHiddenIndex)[0].previousElementSibling;
-              
+
               if (prevHidden && prevHidden.tagName === 'OPTGROUP' && !prevHidden.disabled) {
                 showDivider = true;
               }
@@ -1207,7 +1194,7 @@
     },
 
     tabIndex: function () {
-      if (this.$element.data('tabindex') !== this.$element.attr('tabindex') && 
+      if (this.$element.data('tabindex') !== this.$element.attr('tabindex') &&
         (this.$element.attr('tabindex') !== -98 && this.$element.attr('tabindex') !== '-98')) {
         this.$element.data('tabindex', this.$element.attr('tabindex'));
         this.$button.attr('tabindex', this.$element.data('tabindex'));
@@ -1511,13 +1498,13 @@
           $lisVisible = this.$lis.not('.divider, .dropdown-header, .disabled, .hidden'),
           lisVisLen = $lisVisible.length,
           selectedOptions = [];
-          
+
       if (status) {
         if ($lisVisible.filter('.selected').length === $lisVisible.length) return;
       } else {
         if ($lisVisible.filter('.selected').length === 0) return;
       }
-          
+
       $lisVisible.toggleClass('selected', status);
 
       for (var i = 0; i < lisVisLen; i++) {

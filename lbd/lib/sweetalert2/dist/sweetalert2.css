@@ -268,7 +268,7 @@ body.swal2-iosfix {
     .swal2-modal .swal2-checkbox span {
       vertical-align: middle; }
   .swal2-modal .swal2-validationerror {
-    background-color: #f0f0f0;
+    background-color: #eeeeee;
     margin: 0 -20px;
     overflow: hidden;
     padding: 10px;

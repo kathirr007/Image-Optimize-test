@@ -8284,7 +8284,7 @@ wysihtml5.views.View = Base.extend(
         "._wysihtml5-temp { display: none; }",
         wysihtml5.browser.isGecko ?
           "body.placeholder { color: graytext !important; }" : 
-          "body.placeholder { color: #a9a9a9 !important; }",
+          "body.placeholder { color: #aaaaaa !important; }",
         "body[disabled]   { background-color: #eee !important; color: #999 !important; cursor: default !important; }",
         // Ensure that user see's broken images and can delete them
         "img:-moz-broken  { -moz-force-broken-image-icon: 1; height: 24px; width: 24px; }"

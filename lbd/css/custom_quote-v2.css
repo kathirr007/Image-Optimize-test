@@ -1,9 +1,9 @@
-.vcenter 
+.vcenter
 {
  position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);   
+    transform: translate(-50%,-50%);
  }
  pre
  {
@@ -43,7 +43,7 @@ font-size:45px;
  color: #34495e;
  margin:5px;
  }
- 
+
  .wizard-footer{
  margin:10px;
  }
@@ -51,13 +51,13 @@ font-size:45px;
  font-size: 30px;
  }
  span.error{
-    color: #FF3B30;    
+    color: #FF3B30;
     margin-top: 5px;
     display:block;
 }
 .input-small
 {
-/*width:50% !important;*/ 
+/*width:50% !important;*/
 }
 .chosen-container-single{
 width:205px !important;
@@ -69,9 +69,9 @@ display:none;
 .MultiFile-label {
     margin: 5px;
 }
- 
 
- 
+
+
 /* Comment */
 
 #comments_list{border-top: 1px solid #ddd; padding-top: 15px;}
@@ -254,7 +254,7 @@ div.phenom:hover .more-actions {display: block;}
 	}
 		.media {
 	    background: none repeat scroll 0 0 #FFFFFF;
-	    border-color: #E4E4E4 #E4E4E4 #BBBBBB;
+	    border-color: #e8e8e8 #e8e8e8 #BBBBBB;
 	    border-image: none;
 	    border-radius: 4px;
 	    border-style: solid;

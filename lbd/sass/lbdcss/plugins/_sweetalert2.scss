@@ -2,542 +2,501 @@
 // github.com/limonte/sweetalert2
 
 .sweet-overlay {
-  background-color: rgba(#000, .4);
-
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-
-  display: none;
-  z-index: 1000;
-}
-
-.sweet-alert {
-  background-color: #fff;
-
-  border-radius: 5px;
-  box-sizing: border-box;
-  text-align: center;
-
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  margin-top: -200px;
-
-  max-height: 90%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  display: none;
-  z-index: 2000;
-
-  &:focus{
-      outline: 0 !important;
-  }
-/*
-  h2 {
-    color: #575757;
-    font-size: 30px;
-    text-align: center;
-    font-weight: 600;
-    text-transform: none;
-    position: relative;
-    margin: 0;
-    padding: 0;
-    line-height: 60px;
-    display: block;
-  }
-
-  p {
-    font-size: 16px;
-    text-align: center;
-    font-weight: 300;
-    position: relative;
-    float: none;
-    margin: 0;
-    padding: 0;
-    line-height: normal;
-  }
-*/
-
-  hr {
-    height: 10px;
-    color: transparent;
-    border: 0;
-  }
-
-  button{
-      margin: 0 5px;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: none;
+    z-index: 1000;
   }
   
-  button:not(.btn) {
-    color: #fff;
-    border: 0;
-    box-shadow: none;
-    font-size: 17px;
-    font-weight: 500;
+  .sweet-alert {
+    background-color: #fff;
     border-radius: 5px;
-    padding: 10px 32px;
-    cursor: pointer;
-
+    box-sizing: border-box;
+    text-align: center;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-top: -200px;
+    max-height: 90%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: none;
+    z-index: 2000;
+  
+      /*
+        h2 {
+          color: #575757;
+          font-size: 30px;
+          text-align: center;
+          font-weight: 600;
+          text-transform: none;
+          position: relative;
+          margin: 0;
+          padding: 0;
+          line-height: 60px;
+          display: block;
+        }
+  
+        p {
+          font-size: 16px;
+          text-align: center;
+          font-weight: $font-weight-normal;
+          position: relative;
+          float: none;
+          margin: 0;
+          padding: 0;
+          line-height: normal;
+        }
+      */
     &:focus {
-      outline: none;
+      outline: 0 !important;
     }
-
-    &.cancel[disabled] {
-      opacity: .4;
-    }
-
-    &.confirm[disabled] {
-      border: 4px solid transparent;
-      border-color: transparent;
-      width: 40px;
-      height: 40px;
-      padding: 0;
-      margin: 0 30px;
-      vertical-align: middle;
-      background-color: transparent !important;
+  
+    hr {
+      height: 10px;
       color: transparent;
-      cursor: default;
-      border-radius: 100%;
-      animation: rotate-loading 1.5s linear 0s infinite normal;
-    }
-
-    // Removes selection outline in Firefox
-    &::-moz-focus-inner {
       border: 0;
     }
-  }
-
-  // Only show focus-style when there is multiple choice of actions
-  &[data-has-cancel-button=false] button {
-    box-shadow: none !important;
-  }
-
-
-  .icon {
-
-    width: 80px;
-    height: 80px;
-    border: 4px solid #808080;
-    border-radius: 50%;
-    margin: 20px auto;
-    padding: 0;
-    position: relative;
-    box-sizing: content-box;
-
-    &.error {
-      border-color: $color-red;
-
-      .x-mark {
-        position: relative;
-        display: block;
-      }
-
-      .line {
-        position: absolute;
-        height: 5px;
-        width: 47px;
-        background-color: $color-red;
-        display: block;
-        top: 37px;
-        border-radius: 2px;
-
-        &.left {
-          transform: rotate(45deg);
-          left: 17px;
+  
+    button {
+      margin: 0 5px;
+  
+      &:not(.btn) {
+        color: #fff;
+        border: 0;
+        box-shadow: none;
+        font-size: 17px;
+        font-weight: 500;
+        border-radius: 5px;
+        padding: 10px 32px;
+        cursor: pointer;
+  
+        &:focus {
+          outline: none;
         }
-
-        &.right {
-          transform: rotate(-45deg);
-          right: 16px;
+  
+        &.cancel[disabled] {
+          opacity: .4;
+        }
+  
+        &.confirm[disabled] {
+          border: 4px solid transparent;
+          border-color: transparent;
+          width: 40px;
+          height: 40px;
+          padding: 0;
+          margin: 0 30px;
+          vertical-align: middle;
+          background-color: transparent !important;
+          color: transparent;
+          cursor: default;
+          border-radius: 100%;
+          animation: rotate-loading 1.5s linear 0s infinite normal;
+        }
+  
+        &::-moz-focus-inner {
+          border: 0;
         }
       }
     }
-
-    &.warning {
-      border-color: $color-orange;
-
-      .body { // Exclamation mark body
-        position: absolute;
-        width: 5px;
-        height: 47px;
-        left: 50%;
-        top: 10px;
-        border-radius: 2px;
-        margin-left: -2px;
-        background-color: $color-orange;
-      }
-      .dot { // Exclamation mark dot
-        position: absolute;
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        margin-left: -3px;
-        left: 50%;
-        bottom: 10px;
-        background-color: $color-orange;
-      }
+  
+    &[data-has-cancel-button=false] button {
+      box-shadow: none !important;
     }
-
-    &.info {
-      border-color: $color-blue;
-
-      &::before { // i-letter body
-        content: '';
-        position: absolute;
-        width: 5px;
-        height: 29px;
-        left: 50%;
-        bottom: 17px;
-        border-radius: 2px;
-        margin-left: -2px;
-        background-color: $color-blue;
-      }
-      &::after { // i-letter dot
-        content: '';
-        position: absolute;
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        margin-left: -3px;
-        top: 19px;
-        background-color: $color-blue;
-      }
-    }
-
-    &.success {
-      border-color: $color-green;
-
-      &::before,
-      &::after { // Emulate moving circular line
-        content: '';
-        border-radius: 50%;
-        position: absolute;
-        width: 60px;
-        height: 120px;
-        background: #fff;
-        transform: rotate(45deg);
-      }
-
-      &::before {
-        border-radius: 120px 0 0 120px;
-        top: -7px;
-        left: -33px;
-
-        transform: rotate(-45deg);
-        transform-origin: 60px 60px;
-      }
-
-      &::after {
-        border-radius: 0 120px 120px 0;
-        top: -11px;
-        left: 30px;
-
-        transform: rotate(-45deg);
-        transform-origin: 0 60px;
-      }
-
-      .placeholder { // Ring
-        width: 80px;
-        height: 80px;
-        border: 4px solid rgba($color-green, .2);
-        border-radius: 50%;
-        box-sizing: content-box;
-
-        position: absolute;
-        left: -4px;
-        top: -4px;
-        z-index: 2;
-      }
-
-      .fix {  // Hide corners left from animation
-        width: 5px;
-        height: 90px;
-        background-color: #fff;
-
-        position: absolute;
-        left: 28px;
-        top: 8px;
-        z-index: 1;
-
-        transform: rotate(-45deg);
-      }
-
-      .line {
-        height: 5px;
-        background-color: $color-green;
-        display: block;
-        border-radius: 2px;
-
-        position: absolute;
-        z-index: 2;
-
-        &.tip {
-          width: 25px;
-
-          left: 14px;
-          top: 46px;
-
-          transform: rotate(45deg);
+  
+    .icon {
+      width: 80px;
+      height: 80px;
+      border: 4px solid #808080;
+      border-radius: 50%;
+      margin: 20px auto;
+      padding: 0;
+      position: relative;
+      box-sizing: content-box;
+  
+      &.error {
+        border-color: #FB404B;
+  
+        .x-mark {
+          position: relative;
+          display: block;
         }
-
-        &.long {
+  
+        .line {
+          position: absolute;
+          height: 5px;
           width: 47px;
-
-          right: 8px;
-          top: 38px;
-
-          transform: rotate(-45deg);
+          background-color: #FB404B;
+          display: block;
+          top: 37px;
+          border-radius: 2px;
+  
+          &.left {
+            transform: rotate(45deg);
+            left: 17px;
+          }
+  
+          &.right {
+            transform: rotate(-45deg);
+            right: 16px;
+          }
         }
       }
+  
+      &.warning {
+        border-color: #FFA534;
+  
+        .body {
+          position: absolute;
+          width: 5px;
+          height: 47px;
+          left: 50%;
+          top: 10px;
+          border-radius: 2px;
+          margin-left: -2px;
+          background-color: #FFA534;
+        }
+  
+        .dot {
+          position: absolute;
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          margin-left: -3px;
+          left: 50%;
+          bottom: 10px;
+          background-color: #FFA534;
+        }
+      }
+  
+      &.info {
+        border-color: #447DF7;
+  
+        &::before {
+          content: '';
+          position: absolute;
+          width: 5px;
+          height: 29px;
+          left: 50%;
+          bottom: 17px;
+          border-radius: 2px;
+          margin-left: -2px;
+          background-color: #447DF7;
+        }
+  
+        &::after {
+          content: '';
+          position: absolute;
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          margin-left: -3px;
+          top: 19px;
+          background-color: #447DF7;
+        }
+      }
+  
+      &.success {
+        border-color: #87CB16;
+  
+        &::before, &::after {
+          content: '';
+          border-radius: 50%;
+          position: absolute;
+          width: 60px;
+          height: 120px;
+          background: #fff;
+          transform: rotate(45deg);
+        }
+  
+        &::before {
+          border-radius: 120px 0 0 120px;
+          top: -7px;
+          left: -33px;
+          transform: rotate(-45deg);
+          transform-origin: 60px 60px;
+        }
+  
+        &::after {
+          border-radius: 0 120px 120px 0;
+          top: -11px;
+          left: 30px;
+          transform: rotate(-45deg);
+          transform-origin: 0 60px;
+        }
+  
+        .placeholder {
+          width: 80px;
+          height: 80px;
+          border: 4px solid rgba(135, 203, 22, 0.2);
+          border-radius: 50%;
+          box-sizing: content-box;
+          position: absolute;
+          left: -4px;
+          top: -4px;
+          z-index: 2;
+        }
+  
+        .fix {
+          width: 5px;
+          height: 90px;
+          background-color: #fff;
+          position: absolute;
+          left: 28px;
+          top: 8px;
+          z-index: 1;
+          transform: rotate(-45deg);
+        }
+  
+        .line {
+          height: 5px;
+          background-color: #87CB16;
+          display: block;
+          border-radius: 2px;
+          position: absolute;
+          z-index: 2;
+  
+          &.tip {
+            width: 25px;
+            left: 14px;
+            top: 46px;
+            transform: rotate(45deg);
+          }
+  
+          &.long {
+            width: 47px;
+            right: 8px;
+            top: 38px;
+            transform: rotate(-45deg);
+          }
+        }
+      }
+  
+      &.custom {
+        background-size: contain;
+        border-radius: 0;
+        border: 0;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
     }
-
-    &.custom {
-      background-size: contain;
-      border-radius: 0;
-      border: 0;
-      background-position: center center;
-      background-repeat: no-repeat;
+  }
+  
+  @keyframes showSweetAlert {
+    0% {
+      transform: scale(0.8);
+    }
+  
+    40% {
+      transform: scale(1.06);
+    }
+  
+    75% {
+      transform: scale(0.88);
+    }
+  
+    100% {
+      transform: scale(1);
     }
   }
-
-}
-
-// Animations
-
-@mixin keyframes($animation-name) {
-  @keyframes #{$animation-name} {
-    @content;
+  
+  @keyframes hideSweetAlert {
+    0% {
+      transform: scale(1);
+    }
+  
+    100% {
+      transform: scale(0.5);
+    }
   }
-}
-
-@mixin animation($str) {
-  animation: #{$str};
-}
-
-
-// Modal animation
-
-@include keyframes(showSweetAlert) {
-  0% {
-    transform: scale(.8);
+  
+  .show-sweet-alert {
+    animation: showSweetAlert 0.45s ease;
+  
+    &.no-animation {
+      animation: none;
+    }
   }
-
-  40% {
-    transform: scale(1.06);
+  
+  .hide-sweet-alert {
+    animation: hideSweetAlert 0.2s;
+  
+    &.no-animation {
+      animation: none;
+    }
   }
-
-  75% {
-    transform: scale(.88);
+  
+  @keyframes animate-success-tip {
+    0% {
+      width: 0;
+      left: 1px;
+      top: 19px;
+    }
+  
+    54% {
+      width: 0;
+      left: 1px;
+      top: 19px;
+    }
+  
+    70% {
+      width: 50px;
+      left: -8px;
+      top: 37px;
+    }
+  
+    84% {
+      width: 17px;
+      left: 21px;
+      top: 48px;
+    }
+  
+    100% {
+      width: 25px;
+      left: 14px;
+      top: 45px;
+    }
   }
-
-  100% {
-    transform: scale(1);
+  
+  @keyframes animate-success-long {
+    0% {
+      width: 0;
+      right: 46px;
+      top: 54px;
+    }
+  
+    65% {
+      width: 0;
+      right: 46px;
+      top: 54px;
+    }
+  
+    84% {
+      width: 55px;
+      right: 0;
+      top: 35px;
+    }
+  
+    100% {
+      width: 47px;
+      right: 8px;
+      top: 38px;
+    }
   }
-}
-
-@include keyframes(hideSweetAlert) {
-  0% {
-    transform: scale(1);
+  
+  @keyframes rotatePlaceholder {
+    0% {
+      transform: rotate(-45deg);
+    }
+  
+    5% {
+      transform: rotate(-45deg);
+    }
+  
+    12% {
+      transform: rotate(-405deg);
+    }
+  
+    100% {
+      transform: rotate(-405deg);
+    }
   }
-
-  100% {
-    transform: scale(.5);
+  
+  .animate-success-tip {
+    animation: animate-success-tip 0.75s;
   }
-}
-
-.show-sweet-alert {
-  @include animation('showSweetAlert 0.45s ease');
-
-  &.no-animation {
-    @include animation('none');
+  
+  .animate-success-long {
+    animation: animate-success-long 0.75s;
   }
-}
-
-.hide-sweet-alert {
-  @include animation('hideSweetAlert 0.2s');
-
-  &.no-animation {
-    @include animation('none');
+  
+  .icon.success.animate::after {
+    animation: rotatePlaceholder 4.25s ease-in;
   }
-}
-
-
-
-// Success icon animation
-
-@include keyframes(animate-success-tip) {
-  0% {
-    width: 0;
-    left: 1px;
-    top: 19px;
+  
+  @keyframes animate-error-icon {
+    0% {
+      transform: rotateX(100deg);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: rotateX(0deg);
+      opacity: 1;
+    }
   }
-
-  54% {
-    width: 0;
-    left: 1px;
-    top: 19px;
+  
+  .animate-error-icon {
+    animation: animate-error-icon 0.5s;
   }
-
-  70% {
-    width: 50px;
-    left: -8px;
-    top: 37px;
+  
+  @keyframes animate-x-mark {
+    0% {
+      transform: scale(0.4);
+      margin-top: 26px;
+      opacity: 0;
+    }
+  
+    50% {
+      transform: scale(0.4);
+      margin-top: 26px;
+      opacity: 0;
+    }
+  
+    80% {
+      transform: scale(1.15);
+      margin-top: -6px;
+    }
+  
+    100% {
+      transform: scale(1);
+      margin-top: 0;
+      opacity: 1;
+    }
   }
-
-  84% {
-    width: 17px;
-    left: 21px;
-    top: 48px;
+  
+  .animate-x-mark {
+    animation: animate-x-mark 0.5s;
   }
-
-  100% {
-    width: 25px;
-    left: 14px;
-    top: 45px;
+  
+  @keyframes pulse-warning {
+    0% {
+      border-color: rgba(255, 165, 52, 0.6);
+    }
+  
+    100% {
+      border-color: rgba(255, 165, 52, 0.6);
+    }
   }
-}
-
-@include keyframes(animate-success-long) {
-  0% {
-    width: 0;
-    right: 46px;
-    top: 54px;
+  
+  .pulse-warning {
+    animation: pulse-warning 0.75s infinite alternate;
   }
-
-  65% {
-    width: 0;
-    right: 46px;
-    top: 54px;
+  
+  @keyframes pulse-warning-ins {
+    0% {
+      background-color: rgba(255, 165, 52, 0.6);
+    }
+  
+    100% {
+      background-color: rgba(255, 165, 52, 0.6);
+    }
   }
-
-  84% {
-    width: 55px;
-    right: 0;
-    top: 35px;
+  
+  .pulse-warning-ins {
+    animation: pulse-warning-ins 0.75s infinite alternate;
   }
-
-  100% {
-    width: 47px;
-    right: 8px;
-    top: 38px;
+  
+  @keyframes rotate-loading {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
   }
-}
-
-@include keyframes(rotatePlaceholder) {
-  0% {
-    transform: rotate(-45deg);
-  }
-
-  5% {
-    transform: rotate(-45deg);
-  }
-
-  12% {
-    transform: rotate(-405deg);
-  }
-
-  100% {
-    transform: rotate(-405deg);
-  }
-}
-
-.animate-success-tip {
-  @include animation('animate-success-tip 0.75s');
-}
-
-.animate-success-long {
-  @include animation('animate-success-long 0.75s');
-}
-
-.icon.success.animate::after {
-  @include animation('rotatePlaceholder 4.25s ease-in');
-}
-
-
-// Error icon animation
-
-@include keyframes(animate-error-icon) {
-  0% {
-    transform: rotateX(100deg);
-    opacity: 0;
-  }
-
-  100% {
-    transform: rotateX(0deg);
-    opacity: 1;
-  }
-}
-
-.animate-error-icon {
-  @include animation('animate-error-icon 0.5s');
-}
-
-@include keyframes(animate-x-mark) {
-  0% {
-    transform: scale(.4);
-    margin-top: 26px;
-    opacity: 0;
-  }
-
-  50% {
-    transform: scale(.4);
-    margin-top: 26px;
-    opacity: 0;
-  }
-
-  80% {
-    transform: scale(1.15);
-    margin-top: -6px;
-  }
-
-  100% {
-    transform: scale(1);
-    margin-top: 0;
-    opacity: 1;
-  }
-}
-
-.animate-x-mark {
-  @include animation('animate-x-mark 0.5s');
-}
-
-@include keyframes(pulse-warning) {
-  0% {
-    border-color: rgba($color-orange, .6);
-  }
-
-  100% {
-    border-color: rgba($color-orange, .6);
-  }
-}
-
-.pulse-warning {
-  @include animation('pulse-warning 0.75s infinite alternate');
-}
-
-@include keyframes(pulse-warning-ins) {
-  0% {
-    background-color: rgba($color-orange, .6);
-  }
-
-  100% {
-    background-color: rgba($color-orange, .6);
-  }
-}
-
-.pulse-warning-ins {
-  @include animation('pulse-warning-ins 0.75s infinite alternate');
-}
-
-@include keyframes(rotate-loading) {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}

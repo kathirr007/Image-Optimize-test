@@ -1,0 +1,107 @@
+/* Quizz and Surveys template CSS Starts */
+.layout-3.wp-app {
+  .page-wrap {
+    .main-panel-wrap {
+      .main-panel {
+        .main-panel-page {
+
+          .main-container {
+          	&.quizz-surveys-list-page{
+	            .tab-panel-container {
+
+	            }
+
+	            .main-panel-container {
+	            	.no-data-container{
+	            		.no-data-placeholder{
+	            			a.create{
+	            				min-width: 230px;
+	            			}
+	            		}
+	            	}
+	              .content {
+	                .tab-content-container {
+	                  .contract-content-container {
+	                    .card-section-list {
+	                      ul {
+	                        li {
+	                          @include clearfix;
+	                        }
+	                      }
+
+	                      .card-contract {
+	                        height: auto;
+	                        display: -webkit-flex;
+	                        display: -moz-flex;
+	                        display: -ms-flex;
+	                        display: -o-flex;
+	                        display: flex;
+
+	                        .language-container {
+	                          margin: 0 0 0 15px;
+	                          padding: 0;
+	                          width: auto;
+	                          .language-to{
+	                          	@extend %language-breadcrum;
+	                          }
+	                        }
+
+	                      }
+	                    }
+	                  }
+	                }
+	              }
+	            }
+
+          	}
+          }
+        }
+      }
+    }
+  }
+}
+
+.ui-widget-content{
+	background: white;
+	li{
+		a{
+			&:hover{
+				background: $selected;
+				color: #fff;
+			}
+		}
+	}
+}
+
+/* Modal styles Starts */
+.quizz-surveys-creation-modal{
+	.tokenfield{
+		.token{
+			.close{
+				line-height: normal;
+				color: $helper;
+				display: -webkit-inline-flex;
+				display: -moz-inline-flex;
+				display: -ms-inline-flex;
+				display: -o-inline-flex;
+				display: inline-flex;
+				align-items: center;
+				top: 0;
+				&:hover{
+					color: $main;
+				}
+			}
+		}
+	}
+}
+.edit-quiz-modal{
+	@extend .quizz-surveys-creation-modal;
+	.tab-pane {
+		padding: 0;
+	}
+}
+
+/* Modal styles Ends */
+
+
+/* Quizz and Surveys template CSS Ends */

@@ -1,112 +1,40 @@
-/* eslint-disable */
- // Include gulp and plugins
- var
-  gulp = require('gulp'),
-  chokidar = require('chokidar'),
-  del = require('del'),
-  imagemin = require('imagemin'),
-  imageminPngquant = require('imagemin-pngquant'),
-  pkg = require('./package.json'),
-  $ = require('gulp-load-plugins')({ lazy: true }),
-  browserSync = require('browser-sync').create(),
-  reload = browserSync.reload;
-  var compress_images = require('compress-images');
+// Include gulp and plugins
+const gulp = require('gulp');
 
-//   export ABRAIA_KEY='NWE2ZTkxYjAzYzAwMDAwMDpPTHNUTEFoZzNtUkYwYWtzRXRwUDJXaFpHYmZjd3lxSQ==';
+const del = require('del');
 
-  process.env['ABRAIA_KEY'] = 'NWE2ZTkxYjAzYzAwMDAwMDpPTHNUTEFoZzNtUkYwYWtzRXRwUDJXaFpHYmZjd3lxSQ==';
+// pkg = require('./package.json'),
 
+const $ = require('gulp-load-plugins')({
+    lazy: true
+});
 
+const browserSync = require('browser-sync').create();
+
+const reload = browserSync.reload;
 
 // file locations
-var
-  devBuild = ((process.env.NODE_ENV || 'development').trim().toLowerCase() !== 'production'),
+let devBuild =
+    (process.env.NODE_ENV || 'development').trim().toLowerCase() !==
+    'production';
 
-  source = './',
-  dest = devBuild ? 'builds/development/' : 'builds/production/',
+let source = './';
 
-  nodeModules = './node_modules/';
-  bootstrapSources = nodeModules + 'bootstrap-sass/assets/stylesheets/**/*.scss';
+let dest = devBuild ? 'builds/development/' : 'builds/production/';
 
-  html = {
-    partials: [source + '_partials/**/*'],
-    in: [source + '*.html'],
-    watch: ['*.html', '_partials/**/*'],
-    out: dest,
-    context: {
-      devBuild: devBuild,
-      author: pkg.author,
-      version: pkg.version
-    }
-  },
-
-  images = {
-    in: source + 'lbd/img/**/*',
+let images = {
+    in: [source + 'lbd/img/**/*', source + 'lbd/lib/tag_editmaster/img/**/*'],
     out: dest + 'lbd/img/'
-  },
-
-  fonts = {
-    in: source + 'lbd/fonts/*.*',
-    out: dest + 'lbd/fonts/'
-  },
-
-
-  syncOpts = {
-    server: {
-      baseDir: dest,
-      index: 'index.html'
-    },
-    open: false,
-    injectChanges: true,
-    reloadDelay: 0,
-    notify: true
-  };
-
-// show build type
-console.log(pkg.name + ' ' + pkg.version + ', ' + (devBuild ? 'development' : 'production') + ' build');
+};
 
 
 // Clean tasks
-gulp.task('clean', function(done) {
-  del([
-    dest + '*'
-  ]);
-  done();
+gulp.task('clean', cb => {
+    del([dest + '**/*'], cb());
 });
 
-gulp.task('clean-images', function(done) {
-  del([
-    dest + 'lbd/img/**/*'
-  ]);
-  done();
-});
-
-gulp.task('clean-html', function() {
-  del([
-    dest + '**/*.html'
-  ]);
-});
-
-gulp.task('clean-css', function() {
-  del([
-    dest + 'lbd/css/**/*'
-  ]);
-});
-
-gulp.task('clean-js', function() {
-  del([
-    dest + 'lbd/js/**/*'
-  ]);
-});
-
-gulp.task('clean-jslib', function() {
-  del([
-    dest + 'lbd/lib/**/*'
-  ]);
-});
-
-gulp.task('clean-bundle', function(){
-  del([dest + 'lbd/css/lbd-bundle.css', dest + 'lbd/js/lbd-bundle.js', dest + 'lbd/lib/plugins-bundle.*']);
+gulp.task('clean-images', cb => {
+    del([dest + 'lbd/img/**/*'], cb());
 });
 
 // reload task
@@ -115,127 +43,90 @@ gulp.task('reload', done => {
     done();
 });
 
-// build HTML files
-gulp.task('html', function() {
-  var page = gulp.src(html.in)
-             // .pipe($.newer(html.out))
-             .pipe($.preprocess({ context: html.context }))
-             /*.pipe($.replace(/.\jpg|\.png|\.tiff/g, '.webp'))*/;
-  if (!devBuild) {
-      page = page
-      .pipe($.size({ title: 'HTML in' }))
-      .pipe($.htmlclean())
-      .pipe($.size({ title: 'HTML out' }));
-  }
-  return page
-     .pipe(gulp.dest(html.out));
-});
-
 // manage images
 gulp.task('images', () => {
-  // var imageFilter = $.filter(['**/*.jpg', '**/*.png'], {restore: true});
-  var imageFilter = $.filter(['**/*.{jpg,png,gif,bmp,tif,svg}', '!**/*.{ico}'], {restore: true});
-  return gulp.src(images.in)
-    .pipe($.size({title: 'Total images in '}))
-    /* .pipe(imageFilter)
-    .pipe($.size({title: 'Filtered images in '})) */
-    .pipe($.newer(images.out))
-    .pipe($.image({
-        jpegRecompress: ['--strip', '--quality', 'medium', '--min', 40, '--max', 80, '--loops', 10],
-        // mozjpeg: ['-optimize', '-progressive'],
-        // guetzli: ['--quality', 85],
-        quiet: true
-    }))
-    /*.pipe($.size({title: 'Filtered images out '}))
-    .pipe(imageFilter.restore)
-    .pipe(imageFilter2)
-    .pipe($.webp())
-    .pipe(imageFilter2.restore)*/
-    .pipe($.size({title: 'Total images out '}))
-    .pipe(gulp.dest(images.out));
+    var imageFilter2 = $.filter(['**/*.+(jpg|png|tiff|webp)'], {
+        restore: true
+    });
+    return (
+        gulp
+        .src(images.in)
+        .pipe($.size({
+            title: 'images in '
+        }))
+        .pipe($.newer(images.out))
+        .pipe($.plumber())
+        .pipe($.image({
+            jpegRecompress: ['--strip', '--quality', 'medium', '--loops', 10, '--min', 40, '--max', 80],
+            mozjpeg: ['-quality', 50, '-optimize', '-progressive'],
+            guetzli: ['--quality', 84],
+            quiet: true
+        }))
+        /* .pipe($.image({
+            jpegRecompress: ['--strip', '--quality', 'medium', '--min', 40, '--max', 80],
+            mozjpeg: ['-optimize', '-progressive'],
+            guetzli: ['--quality', 84],
+            quiet: true
+        })) */
+        // .pipe($.imagemin())
+        .pipe($.size({
+            title: 'images out '
+        }))
+        .pipe(gulp.dest(images.out))
+    );
 });
 
-gulp.task('gulp-image', () => {
-    gulp.src(images.in)
-        // .pipe($.newer('./builds/development/img/compressed/gulp-image'))
+gulp.task('optim-images', function () {
+    return gulp.src(images.in)
+        .pipe($.size({
+            title: 'Total images in '
+        }))
+        .pipe($.newer(images.out))
+        .pipe($.plumber())
         .pipe($.image({
-            jpegRecompress: ['--strip', '--quality', 'medium', '--min', 40, '--max', 80, '--loops', 10],
+            jpegRecompress: ['--strip', '--quality', 'medium', '--min', 40, '--max', 80],
             // mozjpeg: ['-optimize', '-progressive'],
             // guetzli: ['--quality', 85],
             quiet: true
         }))
-        .pipe(gulp.dest('./builds/development/img/compressed/gulp-image/jpegRecomp'));
-  });
-
-  gulp.task('optimize-images', () => {
-    return gulp.src(images.in)
-      .pipe($.cache($.abraia()))
-      .pipe(gulp.dest('builds/development/img/abaria'))
-  })
-
-  gulp.task('variants', () => {
-    return gulp.src(images.in)
-      .pipe($.cache($.abraia([
-        { width: 1920, rename: { suffix: '-1920' }},
-        { width: 750, rename: { suffix: '-750' }},
-        { width: 375, rename: { suffix: '-375' }}
-      ])))
-      .pipe(gulp.dest('builds/development/img/abaria'))
-  })
-
-// copy fonts
-gulp.task('fonts', function() {
-  return gulp.src(fonts.in)
-    .pipe($.newer(dest+ 'lbd/fonts/'))
-    .pipe($.image({
-        quiet: true
-    }))
-    .pipe($.fontmin())
-    .pipe(gulp.dest(dest + 'lbd/fonts/'));
+        .pipe($.size({
+            title: 'Total images out '
+        }))
+        .pipe(gulp.dest(images.out));
 });
 
-
-
-
-
-
-
-
-gulp.task('test', function(){
-  console.log('Runs the test task');
-});
 
 // browser sync
 gulp.task('serve', () => {
-  browserSync.init({
-    server: {
-      baseDir: dest,
-      index: 'index.html'
-    },
-    // files: [dest + 'lbd/css/light-bootstrap-dashboard.css', dest + 'lbd/js/custom.js'],
-    open: false,
-    // port: 3000,
-    injectChanges: true,
-    notify: true
 
-  });
+    browserSync.init({
+        server: {
+            baseDir: dest,
+            index: 'index.html'
+        },
+        // files: [dest + 'lbd/css/light-bootstrap-dashboard.css', dest + 'lbd/js/custom.js'],
+        open: false,
+        // port: 3000,
+        injectChanges: true,
+        notify: true
+    });
+
 });
 
+gulp.task(
+    'watch',
+    gulp.parallel('serve', () => {
+        // image changes
+        gulp.watch(images.in, gulp.series('images'));
 
-var exec = require('child_process').exec;
-
-gulp.task('watch', gulp.parallel('serve', () => {
-
-
-  // image changes
-  gulp.watch(images.in, gulp.series('images'));
-
-}));
+    })
+);
 
 // default task
-gulp.task('default', gulp.parallel('images', 'watch'), done => {
-  done();
-});
-
-// gulp.task('default', ['serve']);
-/* eslint-enable */
+gulp.task(
+    'default',
+    gulp.parallel(
+        'images',
+        gulp.series('watch')
+    )
+);

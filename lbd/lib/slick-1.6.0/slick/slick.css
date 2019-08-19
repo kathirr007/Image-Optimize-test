@@ -27,15 +27,14 @@
 
     margin: 0;
     padding: 0;
+    /*height: 100% !important;*/
 }
 .slick-list:focus
 {
     outline: none;
 }
-.slick-list.dragging
-{
+.slick-list.dragging {
     cursor: pointer;
-    cursor: hand;
 }
 
 .slick-slider .slick-track,
@@ -55,8 +54,6 @@
     left: 0;
 
     display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 .slick-track:before,
 .slick-track:after

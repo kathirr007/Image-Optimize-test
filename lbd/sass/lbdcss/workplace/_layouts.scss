@@ -1,0 +1,404 @@
+/* common to layout-2 & layout-5 */
+.main-panel-page-header {
+  position: fixed;
+  width: calc(100% - 80px);
+  padding: 0;
+  background: #fff;
+  height: 78px;
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(197, 197, 197, 0.2);
+  -moz-box-shadow: 0px 5px 5px 0px rgba(197, 197, 197, 0.2);
+  box-shadow: 0px 5px 5px 0px rgba(197, 197, 197, 0.2);
+  z-index: 9999;
+  top: 0;
+
+  .contract-image {
+    width: 52px;
+    margin: 13px 0 0 20px;
+    padding: 0;
+
+    .contract-image-container {
+      width: 52px;
+
+      img {
+        max-width: 100%;
+        width: 52px;
+        height: 52px;
+        object-fit: cover;
+      }
+
+      .card-user-empty {
+        height: 52px;
+      }
+    }
+  }
+
+  .contract {
+    padding: 0;
+    margin: 17px 0 0 20px;
+    width: 43%;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+
+    .contract-spec {
+      flex-grow: 1;
+
+      .contract-breadcrumb {
+        a {
+          font-size: 12px;
+          color: #a2a6b0;
+          text-decoration: none;
+        }
+
+        i {
+          position: relative;
+          top: 4px;
+          margin: 0 5px;
+          font-size: 16px;
+          color: #a2a6b0;
+        }
+      }
+
+      .contract-name {
+        .primary-font {
+          color: #485262;
+          font-size: 14px;
+          margin-left: 10px;
+          position: relative;
+          top: 2px;
+        }
+      }
+    }
+
+    .nav-button {
+      margin: 10px 0 0 0;
+
+      a {
+        color: #d7d9dc;
+
+        &:hover,
+        &:focus,
+        &.active {
+          color: #d7d9dc;
+        }
+      }
+
+      .tooltip {
+        width: 100px;
+      }
+    }
+  }
+
+  .right {
+    padding: 0;
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .end-date-container,
+  .mission-validate,
+  .jobs-completed-container {
+    padding: 0;
+    text-align: center;
+    font-size: 14px;
+    color: #B0B4BB;
+    font-weight: 600;
+    border-left: 1px solid $smoke-bg;
+    border-right: 1px solid $smoke-bg;
+
+    a.end-date {
+      /* width: 211px; */
+      display: block;
+      width: 100%;
+      padding: 20px 0 21px;
+      text-align: center;
+      font-size: 14px;
+      color: #485262;
+      font-weight: 600;
+      position: relative;
+      cursor: pointer;
+
+      i {
+        &[class*='check'] {
+          color: $selected;
+        }
+      }
+
+      span.warning-indicator {
+        position: absolute;
+        top: 33px;
+        left: 30px;
+
+        span.icon-flipped {
+          i {
+            color: #ee0a5f;
+            font-size: 20px;
+          }
+        }
+      }
+
+      span.caret-drop {
+        position: absolute;
+        top: 34px;
+        right: 40px;
+        color: #a6aab3;
+      }
+
+      &:hover,
+      &:focus,
+      &.active {
+        background: #FBFBFB;
+      }
+    }
+
+    span.title {
+      font-size: 12px;
+      display: block;
+      color: #B0B4BB;
+      font-weight: $font-weight-normal;
+    }
+
+    span.mission {
+      color: #485262;
+
+      small {
+        font-size: 11px;
+        position: relative;
+        top: -1.5px;
+      }
+    }
+
+    a.edit-number {
+      position: absolute;
+      top: 40px;
+      right: 30px;
+      color: #a6aab3;
+
+      i {
+        font-size: 16px;
+      }
+    }
+
+    .edit-number-container {
+      display: none;
+      width: 210px;
+      height: 78px;
+      position: absolute;
+      left: 2px;
+      top: 0;
+      background: #fff;
+      padding: 9px 15px;
+
+      label {
+        font-size: 12px;
+        display: block;
+        color: #B0B4BB;
+        font-weight: $font-weight-normal;
+        margin: 0;
+      }
+
+      .input-group {
+        input[type='text'] {
+          width: 70%;
+          float: left;
+        }
+
+        button {
+          width: 30% !important;
+          float: left;
+          padding: 4px 0;
+          height: 40px;
+          border-radius: 0 4px 4px 0px;
+        }
+      }
+    }
+
+    .dropdown-menu {
+      &:before,
+      &:after {
+        content: none;
+        border: none;
+      }
+
+      border-radius: 0;
+      margin-top: 0;
+      width: 100%;
+
+      li {
+        a {
+          padding: 10px;
+          margin: 0;
+          color: #7d889a;
+
+          i {
+            position: relative;
+            font-size: 18px;
+            margin-right: 5px;
+            top: 5px;
+          }
+
+          &:hover {
+            color: #fff;
+            background: #448AFF;
+            border-radius: 0;
+
+            .title,
+            .helper-text {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .jobs-completed-container {
+    padding: 20px 0 21px;
+    height: 78px;
+
+    a.end-date {
+      top: -20px;
+      color: #B0B4BB;
+
+      span.caret-drop {
+        right: 60px;
+        top: auto;
+      }
+    }
+
+    .dropdown-menu {
+      li a {
+        text-align: center;
+      }
+    }
+  }
+
+  .mission-validate {
+    padding: 20px 0 21px;
+    height: 78px;
+
+    a.end-date {
+      top: -20px;
+
+      span.caret-drop {
+        right: 60px;
+        top: auto;
+      }
+    }
+
+    .dropdown-menu {
+      li a {
+        text-align: center;
+      }
+    }
+  }
+
+  a.validate {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    height: 78px;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.main-container {
+  .overlay-main-container {
+    width: calc(100% - 80px);
+  }
+
+  .toggle-panel-container {
+    position: fixed;
+    bottom: 30px;
+    height: 40px;
+    width: 40px;
+    background: #353f53;
+    left: calc(33.33% + 47px);
+    z-index: 1;
+    border-radius: 0 25px 25px 0;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    transition: all .3s ease;
+    opacity: 0.5;
+
+    &.toggled {
+      left: 80px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+
+    a {
+      display: flex;
+      color: #ffffff;
+      font-weight: bold;
+    }
+  }
+}
+
+/* common to layout-2 & layout-5 ends */
+
+/* Layout-2 Changes Starts */
+
+.layout-2.wp-app {
+  .page-wrap {
+    .main-panel-wrap {
+      .main-panel {
+        .main-panel-page {
+          .main-container {
+            .main-panel-container, .tab-panel-container .tab-panel {
+              height: calc(100vh - 78px);
+            }
+
+            .main-panel-container {
+              .no-data-container {
+                height: calc(100vh - 190px);
+              }
+
+              .content {
+                .tab-content {
+                  display: block;
+
+                  .main-panel-header {
+                    width: 100%;
+                    margin-top: -3px;
+                    position: relative;
+                    z-index: 1;
+                    border-bottom: none;
+                    height: 87px;
+
+                    .select-all-container {
+                      margin-top: 30px;
+                    }
+
+                    .validate {
+                      margin-top: 28px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Layout-2 Changes Ends */

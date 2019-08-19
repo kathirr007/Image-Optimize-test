@@ -1,5 +1,5 @@
 .progress {
-    background-color: #E5E5E5;
+    background-color: $light-gray;
     border-radius: 3px;
     box-shadow: none;
     height: 4px;
@@ -8,7 +8,7 @@
     height: 2px;
 }
 
-.progress-bar, 
+.progress-bar,
 .progress-bar-primary{
    background-color: $primary-color;
 }
