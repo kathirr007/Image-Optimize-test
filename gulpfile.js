@@ -23,7 +23,7 @@ let source = './';
 let dest = devBuild ? 'builds/development/' : 'builds/production/';
 
 let images = {
-    in: [source + 'lbd/img/**/*', source + 'lbd/lib/tag_editmaster/img/**/*'],
+    in: [source + 'lbd/img/**/*'],
     out: dest + 'lbd/img/'
 };
 
@@ -58,16 +58,16 @@ gulp.task('images', () => {
         .pipe($.plumber())
         .pipe($.image({
             jpegRecompress: ['--strip', '--quality', 'medium', '--loops', 10, '--min', 40, '--max', 80],
-            mozjpeg: ['-quality', 50, '-optimize', '-progressive'],
-            guetzli: ['--quality', 84],
+            mozjpeg: ['-quality', 38, '-optimize', '-progressive'],
+            // guetzli: ['--quality', 84],
             quiet: true
         }))
-        /* .pipe($.image({
-            jpegRecompress: ['--strip', '--quality', 'medium', '--min', 40, '--max', 80],
-            mozjpeg: ['-optimize', '-progressive'],
-            guetzli: ['--quality', 84],
-            quiet: true
-        })) */
+        // .pipe($.image({
+        //     jpegRecompress: ['--strip', '--quality', 'medium', '--loops', 10, '--min', 40, '--max', 80],
+        //     mozjpeg: ['-quality', 50, '-optimize', '-progressive'],
+        //     // guetzli: ['--quality', 84],
+        //     quiet: true
+        // }))
         // .pipe($.imagemin())
         .pipe($.size({
             title: 'images out '
