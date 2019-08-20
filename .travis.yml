@@ -26,7 +26,7 @@ deploy:
 # Standard GH-Pages Deploy
   provider: pages
   skip-cleanup: true
-#   github-token: fd8d095ed53a0c01428a583edf6fa199c0c5fae3  # Set in the settings page of your repository, as a secure variable
+#   github-token: e9761ef1c76d8a7fefd428310f89a6600f944849  # Set in the settings page of your repository, as a secure variable
   github-token: $GH_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep-history: true
   local_dir: builds # Change this to your build directory
