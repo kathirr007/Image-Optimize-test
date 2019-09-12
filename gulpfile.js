@@ -34,8 +34,8 @@ let html = {
 
 
 let images = {
-    in: [source + 'lbd/img/**/*'],
-    out: dest + 'lbd/img/'
+    in: [source + 'assets/img/**/*'],
+    out: dest + 'assets/img/'
 };
 
 let css = {
@@ -75,7 +75,7 @@ let js = {
         source + 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
         source + 'node_modules/slick-carousel/slick/slick.min.js',
         source + 'node_modules/simplebar/dist/simplebar.min.js',
-        source + 'lbd/js/impress.js',
+        source + 'assets/js/impress.js',
         // source + 'js/custom.js'
     ],
     out: dest + 'js/'
@@ -105,7 +105,7 @@ gulp.task('clean', cb => {
 });
 
 gulp.task('clean-images', cb => {
-    del([dest + 'lbd/img/**/*'], cb());
+    del([dest + 'assets/img/**/*'], cb());
 });
 
 gulp.task('clean-html', () => {
@@ -343,7 +343,7 @@ gulp.task('js', () => {
                     // 'bootstrap-history-tabs.js',
                     // 'bootstrap-tabs-history.js',
                     // 'jquery.stickytabs.js',
-                    // "lbd/js/custom.js"
+                    // "assets/js/custom.js"
                 ])
             )
             .pipe($.groupConcat({
@@ -360,7 +360,7 @@ gulp.task('js', () => {
 });
 
 gulp.task('jslib', function () {
-    var toExclude = ['lbd/lib-live/tinymce_4.2.5/**/*'],
+    var toExclude = ['assets/lib-live/tinymce_4.2.5/**/*'],
         htmlFilter = $.filter(['**/*.html', '**/*.md'], {
             restore: true
         }),
@@ -438,7 +438,7 @@ gulp.task('serve', () => {
             baseDir: dest,
             index: 'index.html'
         },
-        // files: [dest + 'lbd/css/light-bootstrap-dashboard.css', dest + 'lbd/js/custom.js'],
+        // files: [dest + 'assets/css/light-bootstrap-dashboard.css', dest + 'assets/js/custom.js'],
         open: false,
         // port: 3000,
         injectChanges: true,
